@@ -27,12 +27,13 @@ L10n.prototype = {
 		}
 
 		lang = this.lang[lang];
+		this.errors.length = 0;
 
 		var injector = this.injector(lang);
 
 		return str.replace(this.__blockRegExp, injector);
 	},
-	
+
 	reload: function() {
 		var self = this,
 			data = parse(fs.readFileSync(self.path)),
@@ -80,8 +81,8 @@ L10n.prototype = {
 				template = lang[args[0]];   
 
 			if(template === undefined) {
-				self.errors.push('Undeclared ');
-				return str;
+				self.errors.push(args[0]);
+				return args[0];
 			}
 
 			args.slice(1).forEach(function(arg, index){
