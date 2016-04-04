@@ -33,6 +33,9 @@ return localized text
 #### l10n.reload()
 reload csv file (sync), use render again to use updated resorces. 
 
+#### l10n.errors
+array of unknown resources (cleaned befor each use of l10n.render)
+
 ### Usage:
 ```js
 var path = require('path'),
