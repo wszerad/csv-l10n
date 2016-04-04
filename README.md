@@ -5,14 +5,12 @@ Simple engine for l10n (provided via csv files)
 | key\lang (this one is unused) | en  | de  |
 |---|---|---|
 | hello | Hello | Hallo |
-| month.january | January | Januar  |
+| guys | guys | Jungs  |
 | template | My name is __(0), I am __(1) | Ich bin __(1) und ich heiße __(0)  |
 
-You can use templates inside resorces like in last row. Default template block begin of '__(' end with ')' and inside has number of argument.
-Later inside translated text you can use block like: __(template, name, age) where first argument is resorce key and next are following arguments to use inside template.
-Templates are replaced with bindings {{argument}} (usable with Angular and configurable with options)
+You can use templates inside resorces (like in last row). Templates are filled with arguments wrapped in 'bindingStart' and 'bindingEnd' options (see below)
 
-### Methods & Properties
+### constructor L10n
 #### L10n(path[, options])
 * path - absolute path to csv file
 * options:
@@ -26,8 +24,14 @@ Templates are replaced with bindings {{argument}} (usable with Angular and confi
   bindingEnd: '}}'   //end marks for front, here for Angular
 }
 ```
-return l10n instance
+**return l10n instance**
 
+### l10n instance methods
+#### l10n.render(text, lang)
+return localized text
+
+#### l10n.reload()
+reload csv file (sync), use render again to use updated resorces. 
 
 ### Usage:
 ```js
@@ -43,8 +47,8 @@ var path = require('path'),
     },
     l10n = require('l10n-via-csv')(CSVPath, options);
 
-var strToLocalize = 'My name is __(name) and I am __(age). Angular template: __(name.and.age, name, age)',
-    afterLocalize = l10n.render(strToLocalize);
+var strToLocalize = '__(hello) __(guys)!. Angular template: __(template, name, age)',
+    afterLocalize = l10n.render(strToLocalize, 'de');
 
-console.log(afterLocalize); //--> My name is John and I am 21. Angular template: My name is {{name}} and I am {{age}}.
+console.log(afterLocalize); //--> Hallo Jungs! Angular template: Ich bin {{age}} und ich heiße {{name}}.
 ```
