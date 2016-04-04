@@ -1,0 +1,20 @@
+{
+  "name": "csv-l10n",
+  "version": "0.0.1",
+  "description": "Template engine for l10n based od csv files",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./test/test.js"
+  },
+  "keywords": [
+    "l10n",
+    "csv",
+    "template",
+    "engine"
+  ],
+  "author": "Wszerad",
+  "license": "MIT",
+  "dependencies": {
+    "csv-parse": "^1.0.4"
+  }
+}

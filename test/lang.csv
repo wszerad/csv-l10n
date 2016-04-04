@@ -1,0 +1,4 @@
+Should by langs here:,John,Brad
+name,John,Brad
+age,21,54
+name.and.age,My name is __(0) and I am __(1).,I am __(1) and my name is __(0).
