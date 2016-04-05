@@ -1,5 +1,6 @@
 {
   "name": "csv-l10n",
+  "version": "0.0.3",
   "description": "Template engine for l10n based od csv files",
   "main": "index.js",
   "scripts": {
