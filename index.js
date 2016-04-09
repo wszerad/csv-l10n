@@ -37,7 +37,7 @@ L10n.prototype = {
 
 		if(lang) {
 			this.lang = lang;
-		} else if(this.lang === null && this.langs.length) {
+		} else if(this.lang === null && !this.langs.length) {
 			throw new Error('No language file detected');
 		} else if(this.lang === null) {
 			this.lang = this.langs[0];
