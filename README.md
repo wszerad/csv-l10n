@@ -1,5 +1,10 @@
-# l10n-via-csv
+# csv-l10n
 Simple engine for l10n (provided via csv files)
+
+```
+npm install csv-l10n
+```
+
 
 ### csv table design
 | key\lang (this one is unused) | en  | de  |
