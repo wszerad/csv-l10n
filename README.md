@@ -52,6 +52,9 @@ array of loaded langs
 #### l10n.errors
 array of unknown resources (cleaned befor each use of l10n.render)
 
+#### l10n.count
+number of injections during rendering
+
 ### Usage:
 ```js
 var path = require('path'),
