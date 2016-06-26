@@ -8,7 +8,7 @@ function L10n(path, opt, cb) {
 		cb = opt;
 		opt = {};
 	}
-	
+
 	opt = opt || {};
 	this.path = path;
 	this.blocks = {
@@ -23,17 +23,19 @@ function L10n(path, opt, cb) {
 	this.__templateRegExp = new RegExp('(' + regExpEscape(this.blocks.templateStart) + '\\d+' + regExpEscape(this.blocks.templateEnd) + ')', 'g');
 	this.errors = [];
 	this.langs = [];
+	this.count = 0;
 	this.lang = null;
 
 	if(cb) {
 		this.reload(cb);
 	} else {
-		this.reloadSync();	
+		this.reloadSync();
 	}
 }
 L10n.prototype = {
 	render: function(str, lang) {
 		this.errors.length = 0;
+		this.count = 0;
 
 		if(lang) {
 			this.lang = lang;
@@ -58,11 +60,11 @@ L10n.prototype = {
 
 	reload: function(cb) {
 		var self = this;
-		
+
 		fs.readFile(self.path, function(err, data) {
 			if(err)
 				return cb(err);
-			
+
 			self.reloadSync(parse(data));
 
 			cb(null);
@@ -114,7 +116,9 @@ L10n.prototype = {
 			args = str.replace(/\s/g, '').slice(self.blocks.blockStart.length, self.blocks.blockEnd.length*-1).split(','),
 			lang = self.resources[self.lang],
 			template = lang[args[0]];
-		
+
+		self.count++;
+
 		if(template === undefined) {
 			self.errors.push(args[0]);
 			return args[0];
