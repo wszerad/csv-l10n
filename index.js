@@ -24,6 +24,7 @@ function L10n(path, opt, cb) {
 	this.errors = [];
 	this.langs = [];
 	this.lang = null;
+	this.count = 0;
 
 	if(cb) {
 		this.reload(cb);
@@ -34,6 +35,7 @@ function L10n(path, opt, cb) {
 L10n.prototype = {
 	render: function(str, lang) {
 		this.errors.length = 0;
+		this.count = 0;
 
 		if(lang) {
 			this.lang = lang;
@@ -114,6 +116,8 @@ L10n.prototype = {
 			args = str.replace(/\s/g, '').slice(self.blocks.blockStart.length, self.blocks.blockEnd.length*-1).split(','),
 			lang = self.resources[self.lang],
 			template = lang[args[0]];
+		
+		this.count++;
 		
 		if(template === undefined) {
 			self.errors.push(args[0]);
