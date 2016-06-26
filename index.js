@@ -25,6 +25,7 @@ function L10n(path, opt, cb) {
 	this.langs = [];
 	this.count = 0;
 	this.lang = null;
+	this.count = 0;
 
 	if(cb) {
 		this.reload(cb);
