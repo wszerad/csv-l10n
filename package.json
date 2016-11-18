@@ -1,6 +1,6 @@
 {
   "name": "csv-l10n",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Template engine for l10n based od csv files",
   "main": "index.js",
   "scripts": {
@@ -19,6 +19,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "csv-parse": "^1.0.4"
+    "csv-parse": "^1.1.7",
+    "lodash": "^4.17.2"
   }
 }

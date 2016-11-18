@@ -10,9 +10,8 @@ npm install csv-l10n
 |---|---|---|
 | hello | Hello | Hallo |
 | guys | guys | Jungs  |
-| template | My name is ${0}, I am ${1} | Ich bin ${1} und ich heiße ${0}  |
-
-You can use templates inside resorces (like in last row). Templates are filled with arguments wrapped in 'bindingStart' and 'bindingEnd' options (see below)
+| welcome.day | good morning | guten Morgen  |
+| welcome.night | good evening | guten Abend  |
 
 ### constructor L10n
 #### L10n(path[, options, cb])
@@ -22,10 +21,6 @@ You can use templates inside resorces (like in last row). Templates are filled w
 { //defaults
   blockStart: '__(',  //start marks inside text to parse
   blockEnd: ')',  //end marks inside text to parse
-  templateStart: '${', //start marks inside resorce
-  templateEnd: '}', //end marks inside resorce
-  bindingStart: '{{',  //start marks for front, here for Angular
-  bindingEnd: '}}'   //end marks for front, here for Angular
 }
 ```
 * cb - if not specified lang file will by loaded sync
@@ -60,17 +55,16 @@ number of injections during rendering
 var path = require('path'),
     CSVPath = path.join(__dirname, './lang.csv'), //absolute path to csv file
     options = { //default options
-      blockStart: '__(',
-  		blockEnd: ')',
-  		templateStart: '${',
-        templateEnd: '}',
-  		bindingStart: '{{',
-  		bindingEnd: '}}'
+        blockStart: '__(',
+        blockEnd: ')',
     },
     l10n = require('csv-l10n')(CSVPath, options);
 
-var strToLocalize = '__(hello) __(guys)!. Angular template: __(template, name, age)',
-    afterLocalize = l10n.render(strToLocalize, 'de');
+var strToLocalize = '__(hello) __(guys)!.',
+    mapToLocalize = '__(welcome.*)',
+    arrayToLocalize = '__(welcome[*])';
 
-console.log(afterLocalize); //--> Hallo Jungs! Angular template: Ich bin {{age}} und ich heiße {{name}}.
+console.log(l10n.render(strToLocalize, 'de'));      //--> Hallo Jungs!.
+console.log(l10n.render(mapToLocalize, 'en'));      //--> {"day": "good morning", "night": "good evening"}
+console.log(l10n.render(arrayToLocalize, 'de'));    //--> ["guten Morgen", "guten Abend"]
 ```
