@@ -1,4 +1,20 @@
 Should by langs here:,John,Brad
 name,John,Brad
 age,21,54
-name.and.age,My name is ${0} and I am ${1}.,I am ${1} and my name is ${0}.
+names.and.age,My name is ${0} and I am ${1}.,I am ${1} and my name is ${0}.
+months.january,January,Januar
+months.february,February,Februar
+months.march,March,März
+months.april,April,April
+months.may,May,Mai
+months.june,June,Juni
+months.july,July,Juli
+months.august,August,August
+months.september,September,September
+months.october,October,Oktober
+months.november,November,November
+months.december,December,Dezemberń
+nested.a.0,One,Eins
+nested.a.1,Two,Zwei
+nested.b.0,First,Erste
+nested.b.1,Second,Zweite
